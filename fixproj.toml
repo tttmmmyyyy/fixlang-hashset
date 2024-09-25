@@ -1,6 +1,6 @@
 [general]
 name = "hashset"
-version = "0.1.0"
+version = "0.1.1"
 
 [build]
 files = ["hashset.fix"]
@@ -12,3 +12,8 @@ files = ["test.fix"]
 name = "hash"
 version = "0.1.0"
 git = { url = "https://github.com/tttmmmyyyy/fixlang-hash.git" }
+
+[[dependencies]]
+name = "hashmap"
+version = "0.1.0"
+git = { url = "https://github.com/tttmmmyyyy/fixlang-hashmap.git" }

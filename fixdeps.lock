@@ -1,4 +1,4 @@
-proj_file_hash = "50cbfb48325dfdf0a34ad3050fc6cc07"
+proj_file_hash = "f9886146c96733708f4158f3678673bd"
 
 [[dependencies]]
 name = "hash"
@@ -8,3 +8,12 @@ path = ".fixlang/deps/hash_0.1.0"
 [dependencies.git]
 repo = "https://github.com/tttmmmyyyy/fixlang-hash.git"
 rev = "0e05f132ebc9420759a789fcd9e1afa739769c39"
+
+[[dependencies]]
+name = "hashmap"
+version = "0.1.0"
+path = ".fixlang/deps/hashmap_0.1.0"
+
+[dependencies.git]
+repo = "https://github.com/tttmmmyyyy/fixlang-hashmap.git"
+rev = "eff70408f139e5dddc81f4d905fe728c1081a861"
