@@ -3,7 +3,11 @@ module Test;
 import HashSet;
 
 test : IO ();
-test = test_basic;
+test = (
+    eval *test_basic;
+    eval *test_bench;
+    pure()
+);
 
 test_basic : IO ();
 test_basic = (
@@ -77,6 +81,42 @@ test_basic = (
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.merge(set1);
     eval assert_eq(|_|"case L", set.to_iter, [].to_iter);
+
+    pure()
+);
+
+test_bench : IO ();
+test_bench = (
+    let n = 1000000;
+
+    // Insert integers in [0, n) to HashSet.
+    let (mp, insert_time) = consumed_time_while_lazy(|_|(
+        let mp = HashSet::empty(n);
+        loop((mp, 0), |(mp, i)| (
+            if i == n { break $ mp };
+            let mp = mp.insert(i);
+            continue $ (mp, i+1)
+        ))
+    ));
+
+    eval *("Insert : " + insert_time.to_string + " secs").println;
+
+    // Search n integers from HashSet.
+    let ((), search_time) = consumed_time_while_lazy(|_|(
+        loop(0, |i| (
+            if i == n { break $ () };
+            eval if i % 2 == 0 { 
+                assert(|_|"mp not cotains " + i.to_string, mp.contains(i))
+            } else {
+                assert(|_|"mp contains " + i.to_string, !mp.contains(i+n))
+            };
+            continue $ i + 1
+        ))
+    ));
+
+    eval *("Search : " + search_time.to_string + " secs").println;
+
+    eval *("Total : " + (insert_time + search_time).to_string + " secs").println;
 
     pure()
 );
