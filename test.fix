@@ -4,8 +4,8 @@ import HashSet;
 
 test : IO ();
 test = (
-    eval *test_basic;
-    eval *test_bench;
+    test_basic;;
+    test_bench;;
     pure()
 );
 
@@ -23,64 +23,64 @@ test_basic = (
                     // Do nothing for 6
                     .insert(7).insert(7);
 
-    eval *assert_eq(|_|"case A-0", set.contains(0), true);
-    eval *assert_eq(|_|"case A-1", set.contains(1), true);
-    eval *assert_eq(|_|"case A-2", set.contains(2), true);
-    eval *assert_eq(|_|"case A-3", set.contains(3), true);
-    eval *assert_eq(|_|"case A-4", set.contains(4), false);
-    eval *assert_eq(|_|"case A-5", set.contains(5), false);
-    eval *assert_eq(|_|"case A-6", set.contains(6), false);
-    eval *assert_eq(|_|"case A-7", set.contains(7), true);
+    assert_eq(|_|"case A-0", set.contains(0), true);;
+    assert_eq(|_|"case A-1", set.contains(1), true);;
+    assert_eq(|_|"case A-2", set.contains(2), true);;
+    assert_eq(|_|"case A-3", set.contains(3), true);;
+    assert_eq(|_|"case A-4", set.contains(4), false);;
+    assert_eq(|_|"case A-5", set.contains(5), false);;
+    assert_eq(|_|"case A-6", set.contains(6), false);;
+    assert_eq(|_|"case A-7", set.contains(7), true);;
 
-    eval *assert_eq(|_|"case B", set.get_size, 5);
+    assert_eq(|_|"case B", set.get_size, 5);;
     
     let set = HashSet::from_iter([1, 1, 2, 3].to_iter);
 
-    eval *assert_eq(|_|"case C-0", set.contains(0), false);
-    eval *assert_eq(|_|"case c-1", set.contains(1), true);
-    eval *assert_eq(|_|"case C-2", set.contains(2), true);
-    eval *assert_eq(|_|"case C-3", set.contains(3), true);
-    eval *assert_eq(|_|"case C-4", set.contains(4), false);
+    assert_eq(|_|"case C-0", set.contains(0), false);;
+    assert_eq(|_|"case c-1", set.contains(1), true);;
+    assert_eq(|_|"case C-2", set.contains(2), true);;
+    assert_eq(|_|"case C-3", set.contains(3), true);;
+    assert_eq(|_|"case C-4", set.contains(4), false);;
 
-    eval *assert_eq(|_|"case D", set.get_size, 3);
+    assert_eq(|_|"case D", set.get_size, 3);;
 
     let set: HashSet I64 = HashSet::from_iter([].to_iter);
-    eval *assert_eq(|_|"case E", set.get_size, 0);
+    assert_eq(|_|"case E", set.get_size, 0);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([3, 4, 5].to_iter);
     let set = set0.intersect(set1);
-    eval *assert_eq(|_|"case F", set.to_iter, [3].to_iter);
+    assert_eq(|_|"case F", set.to_iter, [3].to_iter);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([4, 5, 6].to_iter);
     let set = set0.intersect(set1);
-    eval *assert_eq(|_|"case G", set.to_iter, [].to_iter);
+    assert_eq(|_|"case G", set.to_iter, [].to_iter);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.intersect(set1);
-    eval *assert_eq(|_|"case H", set.to_iter, [].to_iter);
+    assert_eq(|_|"case H", set.to_iter, [].to_iter);;
 
     let set0: HashSet I64 = HashSet::from_iter([].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.intersect(set1);
-    eval *assert_eq(|_|"case I", set.to_iter, [].to_iter);
+    assert_eq(|_|"case I", set.to_iter, [].to_iter);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([3, 4, 5].to_iter);
     let set = set0.merge(set1);
-    eval *assert_eq(|_|"case J", set.to_iter.to_array.sort_by(|(lhs, rhs)| lhs < rhs), [1, 2, 3, 4, 5]);
+    assert_eq(|_|"case J", set.to_iter.to_array.sort_by(|(lhs, rhs)| lhs < rhs), [1, 2, 3, 4, 5]);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.merge(set1);
-    eval *assert_eq(|_|"case K", set.to_iter.to_array.sort_by(|(lhs, rhs)| lhs < rhs), [1, 2, 3]);
+    assert_eq(|_|"case K", set.to_iter.to_array.sort_by(|(lhs, rhs)| lhs < rhs), [1, 2, 3]);;
 
     let set0: HashSet I64 = HashSet::from_iter([].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.merge(set1);
-    eval *assert_eq(|_|"case L", set.to_iter, [].to_iter);
+    assert_eq(|_|"case L", set.to_iter, [].to_iter);;
 
     pure()
 );
@@ -99,7 +99,7 @@ test_bench = (
         ))
     ));
 
-    eval *("Insert : " + insert_time.to_string + " secs").println;
+    ("Insert : " + insert_time.to_string + " secs").println;;
 
     // Search n integers from HashSet.
     let ((), search_time) = *consumed_time_while_io(
@@ -114,9 +114,9 @@ test_bench = (
         ))
     );
 
-    eval *("Search : " + search_time.to_string + " secs").println;
+    ("Search : " + search_time.to_string + " secs").println;;
 
-    eval *("Total : " + (insert_time + search_time).to_string + " secs").println;
+    ("Total : " + (insert_time + search_time).to_string + " secs").println;;
 
     pure()
 );
