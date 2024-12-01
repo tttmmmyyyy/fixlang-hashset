@@ -8,12 +8,13 @@ files = ["hashset.fix"]
 [build.test]
 files = ["test.fix"]
 
+
 [[dependencies]]
 name = "hash"
-version = "0.1.0"
+version = "1.0.0"
 git = { url = "https://github.com/tttmmmyyyy/fixlang-hash.git" }
 
 [[dependencies]]
 name = "hashmap"
-version = "0.1.0"
+version = "1.0.0"
 git = { url = "https://github.com/tttmmmyyyy/fixlang-hashmap.git" }
