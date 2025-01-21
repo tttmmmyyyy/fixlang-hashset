@@ -59,21 +59,3 @@ Reserves a HashSet so that it will not rehash until size exceeds the spacified v
 ### `to_iter : HashSet::HashSet k -> Std::Iterator k`
 
 Converts a HashSet into an iterator.
-
-## `namespace HashSet::HashSet`
-
-### `@_hashmap : HashSet::HashSet k -> HashMap::HashMap k ()`
-
-Retrieves the field `_hashmap` from a value of `HashSet`.
-
-### `act__hashmap : [f : Std::Functor] (HashMap::HashMap k () -> f (HashMap::HashMap k ())) -> HashSet::HashSet k -> f (HashSet::HashSet k)`
-
-Updates a value of `HashSet` by applying a functorial action to field `_hashmap`.
-
-### `mod__hashmap : (HashMap::HashMap k () -> HashMap::HashMap k ()) -> HashSet::HashSet k -> HashSet::HashSet k`
-
-Updates a value of `HashSet` by applying a function to field `_hashmap`.
-
-### `set__hashmap : HashMap::HashMap k () -> HashSet::HashSet k -> HashSet::HashSet k`
-
-Updates a value of `HashSet` by setting field `_hashmap` to a specified one.
