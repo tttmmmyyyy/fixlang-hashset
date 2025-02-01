@@ -1,6 +1,7 @@
 [general]
 name = "hashset"
 version = "1.0.0"
+description = "Provides the `HashSet` type."
 
 [build]
 files = ["hashset.fix"]
