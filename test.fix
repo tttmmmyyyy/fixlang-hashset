@@ -50,22 +50,22 @@ test_basic = (
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([3, 4, 5].to_iter);
     let set = set0.intersect(set1);
-    assert_eq(|_|"case F", set.to_iter, [3].to_iter);;
+    assert_eq(|_|"case F", set.to_iter.to_dyn, [3].to_iter.to_dyn);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([4, 5, 6].to_iter);
     let set = set0.intersect(set1);
-    assert_eq(|_|"case G", set.to_iter, [].to_iter);;
+    assert_eq(|_|"case G", set.to_iter.to_dyn, [].to_iter.to_dyn);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.intersect(set1);
-    assert_eq(|_|"case H", set.to_iter, [].to_iter);;
+    assert_eq(|_|"case H", set.to_iter.to_dyn, [].to_iter.to_dyn);;
 
     let set0: HashSet I64 = HashSet::from_iter([].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.intersect(set1);
-    assert_eq(|_|"case I", set.to_iter, [].to_iter);;
+    assert_eq(|_|"case I", set.to_iter.to_dyn, [].to_iter.to_dyn);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([3, 4, 5].to_iter);
@@ -80,7 +80,7 @@ test_basic = (
     let set0: HashSet I64 = HashSet::from_iter([].to_iter);
     let set1 = HashSet::from_iter([].to_iter);
     let set = set0.merge(set1);
-    assert_eq(|_|"case L", set.to_iter, [].to_iter);;
+    assert_eq(|_|"case L", set.to_iter.to_dyn, [].to_iter.to_dyn);;
 
     pure()
 );

@@ -20,8 +20,8 @@ erase : [k : HashKey] k -> HashSet k -> HashSet k;
 erase = |key, set| set.mod__hashmap(HashMap::erase(key));
 
 // Constructs a HashSet from an iterator of elements.
-from_iter : [k : HashKey] Iterator k -> HashSet k;
-from_iter = |iter| iter.fold(HashSet::empty(iter.get_size), |set, elm| set.insert(elm));
+from_iter : [k : HashKey, it : Iterator, Item it = k] it -> HashSet k;
+from_iter = |iter| iter.fold(HashSet::empty(iter.get_size), |elm, set| set.insert(elm));
 
 // Gets capacity of a HashSet. 
 get_capacity : HashSet k -> I64;
@@ -46,7 +46,7 @@ intersect = |lhs, rhs| (
 merge : [k : HashKey] HashSet k -> HashSet k -> HashSet k;
 merge = |lhs, rhs| (
     let (lhs, rhs) = if lhs.get_size <= rhs.get_size { (lhs, rhs) } else { (rhs, lhs) };
-    lhs.to_iter.fold(rhs, |rhs, elm| rhs.insert(elm))
+    lhs.to_iter.fold(rhs, |elm, rhs| rhs.insert(elm))
 );
 
 // Reserves a HashSet so that it will not rehash until size exceeds the spacified value.
@@ -54,5 +54,5 @@ reserve : [k : HashKey] I64 -> HashSet k -> HashSet k;
 reserve = |max_size, set| set.mod__hashmap(HashMap::reserve(max_size));
 
 // Converts a HashSet into an iterator.
-to_iter : HashSet k -> Iterator k;
-to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key);
+to_iter : HashSet k -> DynIterator k;
+to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key).to_dyn;
