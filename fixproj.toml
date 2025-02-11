@@ -1,6 +1,6 @@
 [general]
 name = "hashset"
-version = "1.1.0"
+version = "1.1.1"
 description = "Provides the `HashSet` type."
 
 [build]

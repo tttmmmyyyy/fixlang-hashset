@@ -54,5 +54,7 @@ reserve : [k : HashKey] I64 -> HashSet k -> HashSet k;
 reserve = |max_size, set| set.mod__hashmap(HashMap::reserve(max_size));
 
 // Converts a HashSet into an iterator.
-to_iter : HashSet k -> DynIterator k;
-to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key).to_dyn;
+to_iter : HashSet k -> HashSetIterator k;
+to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key);
+
+type HashSetIterator a = MapIterator (HashMapIterator (a, ())) (a, ()) a;
