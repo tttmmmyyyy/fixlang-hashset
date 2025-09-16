@@ -6,36 +6,64 @@ import Hash;
 type HashSet k = unbox struct { _hashmap : HashMap k () };
 
 // Checks whether a hashset contains an element.
+// 
+// # Parameters
+// - `key` : The element to search for.
+// - `set` : The HashSet to search in.
 contains : [k : HashKey] k -> HashSet k -> Bool;
 contains = |key, set| set.@_hashmap.contains_key(key);
 
 // Creates an empty HashSet which is reserved so that it will not rehash until size exceeds the spacified value.
+// 
+// # Parameters
+// - `capacity` : The initial capacity of the HashSet.
 empty : I64 -> HashSet k;
 empty = |max_size| (
     HashSet { _hashmap : HashMap::empty(max_size) }
 );
 
 // Erases an element from a HashSet. 
+// 
+// # Parameters
+// - `key` : The element to erase.
+// - `set` : The HashSet to erase from.
 erase : [k : HashKey] k -> HashSet k -> HashSet k;
 erase = |key, set| set.mod__hashmap(HashMap::erase(key));
 
 // Constructs a HashSet from an iterator of elements.
+// 
+// # Parameters
+// - `iter` : The iterator of elements.
 from_iter : [k : HashKey, it : Iterator, Item it = k] it -> HashSet k;
 from_iter = |iter| iter.fold(HashSet::empty(iter.get_size), |elm, set| set.insert(elm));
 
 // Gets capacity of a HashSet. 
+// 
+// # Parameters
+// - `set` : The HashSet to get capacity of.
 get_capacity : HashSet k -> I64;
 get_capacity = |set| set.@_hashmap.get_capacity;
 
 // Gets size (number of elements) of a HashSet.
+// 
+// # Parameters
+// - `set` : The HashSet to get size of.
 get_size : HashSet k -> I64;
 get_size = |set| set.@_hashmap.get_size;
 
 // Inserts an element into a HashSet.
+// 
+// # Parameters
+// - `key` : The element to insert.
+// - `set` : The HashSet to insert into.
 insert : [k : HashKey] k -> HashSet k -> HashSet k;
 insert = |key, set| set.mod__hashmap(HashMap::insert(key, ()));
 
 // Calculates intersection of two Hashsets.
+// 
+// # Parameters
+// - `fst` : The first HashSet.
+// - `snd` : The second HashSet.
 intersect : [k : HashKey] HashSet k -> HashSet k -> HashSet k;
 intersect = |lhs, rhs| (
     let (lhs, rhs) = if lhs.get_size <= rhs.get_size { (lhs, rhs) } else { (rhs, lhs) };
@@ -43,6 +71,10 @@ intersect = |lhs, rhs| (
 );
 
 // Calculates union of two HashSets.
+// 
+// # Parameters
+// - `fst` : The first HashSet.
+// - `snd` : The second HashSet.
 merge : [k : HashKey] HashSet k -> HashSet k -> HashSet k;
 merge = |lhs, rhs| (
     let (lhs, rhs) = if lhs.get_size <= rhs.get_size { (lhs, rhs) } else { (rhs, lhs) };
@@ -50,10 +82,17 @@ merge = |lhs, rhs| (
 );
 
 // Reserves a HashSet so that it will not rehash until size exceeds the spacified value.
+// 
+// # Parameters
+// - `capacity` : The capacity to reserve.
+// - `set` : The HashSet to reserve.
 reserve : [k : HashKey] I64 -> HashSet k -> HashSet k;
 reserve = |max_size, set| set.mod__hashmap(HashMap::reserve(max_size));
 
 // Converts a HashSet into an iterator.
+// 
+// # Parameters
+// - `set` : The HashSet to convert to an iterator.
 to_iter : HashSet k -> HashSetIterator k;
 to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key);
 
