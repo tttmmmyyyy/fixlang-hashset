@@ -1,6 +1,12 @@
 module Test;
 
-import HashSet;
+import HashSet::{contains, empty, erase, from_iter, get_size, insert, intersect, merge, reserve, to_iter, HashSet};
+import Std::{
+    loop, loop_m, I64, IO, Array::{sort_by, to_iter}, 
+    Debug::{assert, assert_eq, consumed_time_while_io, consumed_time_while_lazy}, IO::println, 
+    Iterator::{to_array, to_dyn}, LoopState::{break, break_m, continue, continue_m}, Monad::pure, 
+    ToString::to_string
+};
 
 test : IO ();
 test = (

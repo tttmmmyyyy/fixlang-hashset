@@ -1,7 +1,11 @@
 module HashSet;
 
-import HashMap;
-import Hash;
+import Hash::HashKey;
+import HashMap::{
+    contains_key, empty, erase, get_capacity, get_size, insert, reserve, to_iter, HashMap, 
+    HashMapIterator
+};
+import Std::{Bool, I64, Iterator, Iterator::{filter, fold, get_size, map, Item, MapIterator}};
 
 type HashSet k = unbox struct { _hashmap : HashMap k () };
 
