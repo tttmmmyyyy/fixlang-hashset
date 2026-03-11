@@ -1,6 +1,6 @@
 module Test;
 
-import HashSet::{contains, empty, erase, from_iter, get_size, insert, intersect, merge, reserve, to_iter, HashSet};
+import HashSet::{@size, contains, empty, erase, from_iter, insert, intersect, merge, reserve, to_iter, HashSet};
 import Std::{
     loop, loop_m, I64, IO, Array::{sort_by, to_iter}, 
     Debug::{assert, assert_eq, consumed_time_while_io, consumed_time_while_lazy}, IO::println, 
@@ -38,7 +38,7 @@ test_basic = (
     assert_eq(|_|"case A-6", set.contains(6), false);;
     assert_eq(|_|"case A-7", set.contains(7), true);;
 
-    assert_eq(|_|"case B", set.get_size, 5);;
+    assert_eq(|_|"case B", set.@size, 5);;
     
     let set = HashSet::from_iter([1, 1, 2, 3].to_iter);
 
@@ -48,10 +48,10 @@ test_basic = (
     assert_eq(|_|"case C-3", set.contains(3), true);;
     assert_eq(|_|"case C-4", set.contains(4), false);;
 
-    assert_eq(|_|"case D", set.get_size, 3);;
+    assert_eq(|_|"case D", set.@size, 3);;
 
     let set: HashSet I64 = HashSet::from_iter([].to_iter);
-    assert_eq(|_|"case E", set.get_size, 0);;
+    assert_eq(|_|"case E", set.@size, 0);;
 
     let set0 = HashSet::from_iter([1, 2, 3].to_iter);
     let set1 = HashSet::from_iter([3, 4, 5].to_iter);
