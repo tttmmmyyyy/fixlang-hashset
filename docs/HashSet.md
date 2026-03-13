@@ -1,10 +1,30 @@
 # HashSet
 
-Defined in hashset@1.1.2
+Defined in hashset@1.2.0
 
 ## Values
 
 ### namespace HashSet
+
+#### @capacity
+
+Type: `HashSet::HashSet k -> Std::I64`
+
+Gets capacity of a HashSet.
+
+##### Parameters
+
+- `set` : The HashSet to get capacity of.
+
+#### @size
+
+Type: `HashSet::HashSet k -> Std::I64`
+
+Gets size (number of elements) of a HashSet.
+
+##### Parameters
+
+- `set` : The HashSet to get size of.
 
 #### contains
 
@@ -40,7 +60,7 @@ Erases an element from a HashSet.
 
 #### from_iter
 
-Type: `[k : Hash::HashKey, it : Std::Iterator, Std::Iterator::Item it = k] it -> HashSet::HashSet k`
+Type: `[it : Std::Iterator, k : Hash::HashKey, Std::Iterator::Item it = k] it -> HashSet::HashSet k`
 
 Constructs a HashSet from an iterator of elements.
 
@@ -52,6 +72,11 @@ Constructs a HashSet from an iterator of elements.
 
 Type: `HashSet::HashSet k -> Std::I64`
 
+(Deprecated) Renamed `HashSet::get_capacity` to `HashSet::@capacity` for brevity.
+
+The old name `HashSet::get_capacity` is now deprecated but will remain available
+for the foreseeable future to maintain backward compatibility.
+
 Gets capacity of a HashSet.
 
 ##### Parameters
@@ -61,6 +86,11 @@ Gets capacity of a HashSet.
 #### get_size
 
 Type: `HashSet::HashSet k -> Std::I64`
+
+(Deprecated) Renamed `HashSet::get_size` to `HashSet::@size` for brevity.
+
+The old name `HashSet::get_size` is now deprecated but will remain available
+for the foreseeable future to maintain backward compatibility.
 
 Gets size (number of elements) of a HashSet.
 
