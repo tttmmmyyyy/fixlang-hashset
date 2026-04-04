@@ -121,7 +121,5 @@ reserve = |max_size, set| set.mod__hashmap(HashMap::reserve(max_size));
 // 
 // # Parameters
 // - `set` : The HashSet to convert to an iterator.
-to_iter : HashSet k -> HashSetIterator k;
+to_iter : [?it : Iterator, Item ?it = k] HashSet k -> ?it;
 to_iter = |set| set.@_hashmap.to_iter.map(|(key, _)| key);
-
-type HashSetIterator a = MapIterator (HashMapIterator (a, ())) (a, ()) a;
