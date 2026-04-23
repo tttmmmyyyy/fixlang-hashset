@@ -1,6 +1,6 @@
 module Test;
 
-import HashSet::{@size, contains, empty, erase, from_iter, insert, intersect, merge, reserve, to_iter, HashSet};
+import HashSet::{contains, empty, erase, from_iter, insert, intersect, merge, reserve, to_iter, @size, HashSet};
 import Std::{
     loop, loop_m, I64, IO, Array::{sort_by, to_iter}, 
     Debug::{assert, assert_eq, consumed_time_while_io, consumed_time_while_lazy}, IO::println, 

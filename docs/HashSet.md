@@ -1,6 +1,6 @@
 # HashSet
 
-Defined in hashset@1.2.0
+Defined in hashset@2.0.1
 
 ## Values
 
@@ -144,7 +144,7 @@ Reserves a HashSet so that it will not rehash until size exceeds the spacified v
 
 #### to_iter
 
-Type: `HashSet::HashSet k -> HashSet::HashSetIterator k`
+Type: `[?it : Std::Iterator, Std::Iterator::Item ?it = k] HashSet::HashSet k -> ?it`
 
 Converts a HashSet into an iterator.
 
@@ -159,14 +159,6 @@ Converts a HashSet into an iterator.
 #### HashSet
 
 Defined as: `type HashSet k = unbox struct { ...fields... }`
-
-##### field `_hashmap`
-
-Type: `HashMap::HashMap k ()`
-
-#### HashSetIterator
-
-Defined as: `type HashSetIterator a = Std::Iterator::MapIterator (HashMap::HashMapIterator (a, ())) (a, ()) a`
 
 ## Traits and aliases
 
