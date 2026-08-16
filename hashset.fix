@@ -14,7 +14,7 @@ type HashSet k = unbox struct { _hashmap : HashMap k () };
 contains : [k : HashKey] k -> HashSet k -> Bool;
 contains = |key, set| set.@_hashmap.contains_key(key);
 
-// Creates an empty HashSet which is reserved so that it will not rehash until size exceeds the spacified value.
+// Creates an empty HashSet which is reserved so that it will not rehash until size exceeds the specified value.
 // 
 // # Parameters
 // - `capacity` : The initial capacity of the HashSet.
@@ -38,7 +38,7 @@ erase = |key, set| set.mod__hashmap(HashMap::erase(key));
 from_iter : [k : HashKey, it : Iterator, Item it = k] it -> HashSet k;
 from_iter = |iter| iter.fold(HashSet::empty(iter.get_size), |elm, set| set.insert(elm));
 
-// Gets capacity of a HashSet. 
+// Gets capacity of a HashSet: the number of elements it holds before it grows.
 // 
 // # Parameters
 // - `set` : The HashSet to get capacity of.
@@ -52,12 +52,10 @@ from_iter = |iter| iter.fold(HashSet::empty(iter.get_size), |elm, set| set.inser
 @size : HashSet k -> I64;
 @size = |set| set.@_hashmap.@size;
 
-// (Deprecated) Renamed `HashSet::get_capacity` to `HashSet::@capacity` for brevity.
-// 
-// The old name `HashSet::get_capacity` is now deprecated but will remain available
-// for the foreseeable future to maintain backward compatibility.
+// (Deprecated) Use `HashSet::@capacity` instead. This name remains available for backward
+// compatibility.
 //
-// Gets capacity of a HashSet.
+// Gets capacity of a HashSet: the number of elements it holds before it grows.
 // 
 // # Parameters
 // - `set` : The HashSet to get capacity of.
@@ -106,12 +104,12 @@ merge = |lhs, rhs| (
     lhs.to_iter.fold(rhs, |elm, rhs| rhs.insert(elm))
 );
 
-// Reserves a HashSet so that it will not rehash until size exceeds the spacified value.
+// Reserves a HashSet so that it will not rehash until size exceeds the specified value.
 // 
 // # Parameters
-// - `capacity` : The capacity to reserve.
+// - `capacity` : Number of elements the HashSet is to hold before it rehashes.
 // - `set` : The HashSet to reserve.
-reserve : [k : HashKey] I64 -> HashSet k -> HashSet k;
+reserve : I64 -> HashSet k -> HashSet k;
 reserve = |max_size, set| set.mod__hashmap(HashMap::reserve(max_size));
 
 // Converts a HashSet into an iterator.
