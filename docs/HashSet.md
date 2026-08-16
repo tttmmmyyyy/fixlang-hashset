@@ -1,6 +1,6 @@
 # HashSet
 
-Defined in hashset@2.0.1
+Defined in hashset@2.1.0
 
 ## Values
 
@@ -10,7 +10,7 @@ Defined in hashset@2.0.1
 
 Type: `HashSet::HashSet k -> Std::I64`
 
-Gets capacity of a HashSet.
+Gets capacity of a HashSet: the number of elements it holds before it grows.
 
 ##### Parameters
 
@@ -41,7 +41,7 @@ Checks whether a hashset contains an element.
 
 Type: `Std::I64 -> HashSet::HashSet k`
 
-Creates an empty HashSet which is reserved so that it will not rehash until size exceeds the spacified value.
+Creates an empty HashSet which is reserved so that it will not rehash until size exceeds the specified value.
 
 ##### Parameters
 
@@ -72,12 +72,10 @@ Constructs a HashSet from an iterator of elements.
 
 Type: `HashSet::HashSet k -> Std::I64`
 
-(Deprecated) Renamed `HashSet::get_capacity` to `HashSet::@capacity` for brevity.
+(Deprecated) Use `HashSet::@capacity` instead. This name remains available for backward
+compatibility.
 
-The old name `HashSet::get_capacity` is now deprecated but will remain available
-for the foreseeable future to maintain backward compatibility.
-
-Gets capacity of a HashSet.
+Gets capacity of a HashSet: the number of elements it holds before it grows.
 
 ##### Parameters
 
@@ -133,13 +131,13 @@ Calculates union of two HashSets.
 
 #### reserve
 
-Type: `[k : Hash::HashKey] Std::I64 -> HashSet::HashSet k -> HashSet::HashSet k`
+Type: `Std::I64 -> HashSet::HashSet k -> HashSet::HashSet k`
 
-Reserves a HashSet so that it will not rehash until size exceeds the spacified value.
+Reserves a HashSet so that it will not rehash until size exceeds the specified value.
 
 ##### Parameters
 
-- `capacity` : The capacity to reserve.
+- `capacity` : Number of elements the HashSet is to hold before it rehashes.
 - `set` : The HashSet to reserve.
 
 #### to_iter
