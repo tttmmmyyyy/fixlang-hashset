@@ -2,6 +2,20 @@
 
 Defined in hashset@2.1.0
 
+Provides `HashSet k`, a set of elements held in a hash table. An element type is one that
+implements `HashKey` of the `hash` library.
+
+`from_iter` or `empty` creates a set, `insert` and `erase` add and remove an element, and
+`contains` tells whether the set holds an element.
+
+```fix
+let set = HashSet::from_iter([3, 1, 4, 1, 5].to_iter);
+assert_eq(|_|"", set.@size, 4);;
+let set = set.insert(9).erase(1);
+assert(|_|"", set.contains(9));;
+assert(|_|"", !set.contains(1))
+```
+
 ## Values
 
 ### namespace HashSet
